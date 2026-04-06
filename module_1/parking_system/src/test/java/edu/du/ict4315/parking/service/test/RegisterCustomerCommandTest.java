@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package edu.du.ict4315.parking.service;
+package edu.du.ict4315.parking.service.test;
 
+import edu.du.ict4315.parking.service.RegisterCustomerCommand;
+import java.io.IOException;
 import java.util.Properties;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -41,7 +43,7 @@ public class RegisterCustomerCommandTest {
      * Test of checkParameters method, of class RegisterCustomerCommand.
      */
     @Test
-    public void testCheckParameters() {
+    public void testCheckParameters() throws IOException {
         System.out.println("checkParameters");
         Properties params = null;
         RegisterCustomerCommand instance = new RegisterCustomerCommand();
