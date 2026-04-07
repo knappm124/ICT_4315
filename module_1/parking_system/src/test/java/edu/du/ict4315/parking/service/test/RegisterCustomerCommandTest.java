@@ -7,10 +7,6 @@ package edu.du.ict4315.parking.service.test;
 import edu.du.ict4315.parking.service.RegisterCustomerCommand;
 import java.io.IOException;
 import java.util.Properties;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,36 +16,45 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class RegisterCustomerCommandTest {
     
-    public RegisterCustomerCommandTest() {
-    }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
-
     /**
      * Test of checkParameters method, of class RegisterCustomerCommand.
+     * @throws java.io.IOException
      */
     @Test
     public void testCheckParameters() throws IOException {
-        System.out.println("checkParameters");
-        Properties params = null;
+        //Create properties object with all parameters except zip
+        Properties params = new Properties();
+        params.setProperty("firstName", "Jessica");
+        params.setProperty("lastName", "Smith");
+        params.setProperty("phoneNumber", "1 385 294 7164");
+        params.setProperty("streetAddress1", "16 Main St");
+        params.setProperty("city", "Denver");
+        params.setProperty("state", "CO");
+        params.setProperty("zip","");
         RegisterCustomerCommand instance = new RegisterCustomerCommand();
-        instance.checkParameters(params);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        //Test that zip code exception is thrown
+        Throwable exception = assertThrows(IOException.class, () -> {
+                instance.checkParameters(params);
+        });
+        assertEquals("Customer's zip code is missing", exception.getMessage());
+        
+        //Set zip and change phone number to 10 digits, starting with 1
+        params.setProperty("zip", "57295");
+        params.setProperty("phoneNumber", "1473625947");
+        
+        //Test that invalid phone number exception is thrown
+        Throwable exception2 = assertThrows(IOException.class, () -> {
+                instance.checkParameters(params);
+        });
+        assertEquals("Customer's phone number is invalid", exception2.getMessage());
+        
+        //Set phone number to 9 digits and repeat test
+        params.setProperty("phoneNumber", "473625947");
+        Throwable exception3 = assertThrows(IOException.class, () -> {
+                instance.checkParameters(params);
+        });
+        assertEquals("Customer's phone number is invalid", exception3.getMessage());
     }
 
     /**
@@ -57,14 +62,18 @@ public class RegisterCustomerCommandTest {
      */
     @Test
     public void testExecute() {
-        System.out.println("execute");
-        Properties params = null;
+        Properties params = new Properties();
+        params.setProperty("firstName", "Jessica");
+        params.setProperty("lastName", "Smith");
+        params.setProperty("phoneNumber", "1 385 294 7164");
+        params.setProperty("streetAddress1", "16 Main St");
+        params.setProperty("city", "Denver");
+        params.setProperty("state", "CO");
+        params.setProperty("zip", "35276");
         RegisterCustomerCommand instance = new RegisterCustomerCommand();
-        String expResult = "";
+        String expResult = "CUST-12";
         String result = instance.execute(params);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -72,27 +81,10 @@ public class RegisterCustomerCommandTest {
      */
     @Test
     public void testGetCommandName() {
-        System.out.println("getCommandName");
         RegisterCustomerCommand instance = new RegisterCustomerCommand();
-        String expResult = "";
+        String expResult = "CUSTOMER";
         String result = instance.getCommandName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getDisplayName method, of class RegisterCustomerCommand.
-     */
-    @Test
-    public void testGetDisplayName() {
-        System.out.println("getDisplayName");
-        RegisterCustomerCommand instance = new RegisterCustomerCommand();
-        String expResult = "";
-        String result = instance.getDisplayName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

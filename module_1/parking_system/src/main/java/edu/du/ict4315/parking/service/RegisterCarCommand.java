@@ -17,9 +17,9 @@ import java.util.Properties;
  * This class will be used to register a car with the parking office and provide a permit
  */
 public class RegisterCarCommand implements Command {
-    private RealParkingOffice office;
+    private RealParkingOffice office = new RealParkingOffice();
     
-    private void checkParameters(Properties params) throws IOException {
+    public void checkParameters(Properties params) throws IOException {
         //Check parameters exist and are valid
         //TODO: Determine regex for license plate validity in Colorado
         if(params.getProperty("customerId").isBlank()){
