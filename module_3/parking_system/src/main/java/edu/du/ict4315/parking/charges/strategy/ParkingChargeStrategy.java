@@ -15,4 +15,5 @@ import java.util.HashMap;
  */
 public interface ParkingChargeStrategy {
     public Money parkingCharge(ParkingLot lot, HashMap<String,Boolean> days, Integer timeParked, ParkingPermit permit);
+    public String getStrategyName();
 }

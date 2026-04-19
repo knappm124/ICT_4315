@@ -14,7 +14,7 @@ import java.util.HashMap;
  *
  * @author melyg
  */
-public class BaseStratgeyCharge implements ParkingChargeStrategy {
+public class BaseStrategyCharge implements ParkingChargeStrategy {
 
     @Override
     public Money parkingCharge(ParkingLot lot, HashMap<String,Boolean> days, Integer timeParked, ParkingPermit permit) {
@@ -40,5 +40,10 @@ public class BaseStratgeyCharge implements ParkingChargeStrategy {
             totalCharge = Money.times(totalCharge, 0.8);
         }
         return totalCharge;
+    }
+
+    @Override
+    public String getStrategyName() {
+        return "BaseStrategy";
     }
 }

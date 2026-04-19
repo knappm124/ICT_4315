@@ -63,4 +63,9 @@ public class SpecialDayDiscountCharge implements ParkingChargeStrategy {
         }
         return totalCharge;
     }  
+
+    @Override
+    public String getStrategyName() {
+        return "SpecialDayDiscount";
+    }
 }

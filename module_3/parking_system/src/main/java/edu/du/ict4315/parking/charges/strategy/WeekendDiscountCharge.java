@@ -64,4 +64,9 @@ public class WeekendDiscountCharge implements ParkingChargeStrategy {
         }
         return totalCharge;
     }
+
+    @Override
+    public String getStrategyName() {
+        return "WeekendDiscount";
+    }
 }

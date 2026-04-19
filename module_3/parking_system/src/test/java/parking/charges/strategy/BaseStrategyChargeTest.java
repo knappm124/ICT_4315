@@ -4,7 +4,7 @@
  */
 package parking.charges.strategy;
 
-import edu.du.ict4315.parking.charges.strategy.BaseStratgeyCharge;
+import edu.du.ict4315.parking.charges.strategy.BaseStrategyCharge;
 import edu.du.ict4315.currency.Money;
 import edu.du.ict4315.parking.Address;
 import edu.du.ict4315.parking.Car;
@@ -21,9 +21,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author melyg
  */
-public class BaseStratgeyChargeTest {
+public class BaseStrategyChargeTest {
     
-    public BaseStratgeyChargeTest() {
+    public BaseStrategyChargeTest() {
     }
 
     /**
@@ -60,7 +60,7 @@ public class BaseStratgeyChargeTest {
         ParkingPermit permit = new ParkingPermit("1",compactCar,LocalDateTime.now().plusYears(3));
         Car suv = new Car(CarType.SUV,"DE5V6H2",tempCustomer);
         ParkingPermit permit2 = new ParkingPermit("2",suv,LocalDateTime.now().plusYears(2));
-        BaseStratgeyCharge instance = new BaseStratgeyCharge();
+        BaseStrategyCharge instance = new BaseStrategyCharge();
         
         //Parking lot rate is $1 per hour, 56 hours should be $56, for a compact it should be 20% less
         Money expResult = Money.of(56.0);

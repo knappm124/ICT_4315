@@ -6,6 +6,8 @@
 package edu.du.ict4315.parking;
 
 import edu.du.ict4315.currency.Money;
+import edu.du.ict4315.parking.charges.strategy.BaseStrategyCharge;
+import edu.du.ict4315.parking.charges.strategy.ParkingChargeStrategy;
 import java.time.LocalDateTime;
 
 public class ParkingLot {
@@ -13,6 +15,7 @@ public class ParkingLot {
     private String name;
     private Address address;
     private Money baseRate = Money.of(5.00);
+    private BaseStrategyCharge strategy = new BaseStrategyCharge();
     
     public ParkingLot(String id, String name, Address address) {
     	this.id = id;
@@ -59,6 +62,10 @@ public class ParkingLot {
 		return address;
 	}
 	
+        public ParkingChargeStrategy getParkingChargeStrategy() {
+            return strategy;
+        }
+        
   // Method for permit-required-on-enter lot
   public void enterLot(LocalDateTime in, String permitId) {
   }
