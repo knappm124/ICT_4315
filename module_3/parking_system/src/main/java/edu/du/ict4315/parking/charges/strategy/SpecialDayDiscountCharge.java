@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package parking.charges.strategy;
+package edu.du.ict4315.parking.charges.strategy;
 
 import edu.du.ict4315.parking.CarType;
 import edu.du.ict4315.currency.Money;
@@ -24,17 +24,29 @@ public class SpecialDayDiscountCharge implements ParkingChargeStrategy {
         
         //Calculate daily charge if parked for more than a day
         if (timeParked > 24) {
-        //Check if it's a weekday or weekend and take 20% off for weekend
-            for (Boolean isSpecialDay : days.values()) {
-                if(isSpecialDay){
-                    Money dailyCharge = Money.times(rate, 24);
-                    dailyCharge = Money.times(dailyCharge,0.8);
-                    totalCharge = Money.add(totalCharge, dailyCharge);
+            int specialDays = 0;
+            int normalDays = 0;
+            //Check if it's a special day and count each
+            for (Boolean value : days.values()) {
+                if (value) {
+                    specialDays += 1;
                 } else {
-                    Money dailyCharge = Money.times(rate, 24);
-                    totalCharge = Money.add(totalCharge, dailyCharge);                    
+                    normalDays += 1;
                 }
             }
+            //Check if time parked is divisible by 24 and remove 1 day from either variable
+            if (timeParked % 24 != 0) {
+                if (normalDays >= 1) {
+                    normalDays -= 1;
+                } else if (normalDays == 0) {
+                    specialDays -= 1;
+                }
+            }
+            //
+            Money weekendCharge = Money.times(rate, 24*specialDays);
+            weekendCharge = Money.times(weekendCharge, 0.8);
+            Money weekdayCharge = Money.times(rate, 24*normalDays);
+            totalCharge = Money.add(weekdayCharge, weekendCharge);
         } else {
             //If parked for a day or less, check if it's a special day and take 20% off hourly rate
             if(days.containsValue(true)){
