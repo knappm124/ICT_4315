@@ -59,8 +59,7 @@ public class ParkingService {
     switch (command) {
       case "CUSTOMER": // Creates a customer
         if (checkNumberOfParameters(1, args.length)) {
-          Customer customer = new Customer();
-          customer.setLastName(checkName(args[0]));
+          Customer customer = new Customer.CustomerBuilder("",checkName(args[0])).build();
           messages.add(parkingOffice.register(customer));
         } else {
           messages.add("Cannot create customer: wrong number of parameters");
@@ -150,7 +149,7 @@ public class ParkingService {
     }
     Customer customer = parkingOffice.getCustomer(customerId);
     if (customer == null) {
-      customer = new Customer();
+      customer = new Customer.CustomerBuilder("","").build();
       customer.setFirstName("Unknown");
       parkingOffice.register(customer);
     }

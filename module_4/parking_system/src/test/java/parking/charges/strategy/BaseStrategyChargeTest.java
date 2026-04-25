@@ -46,7 +46,9 @@ public class BaseStrategyChargeTest {
                 .build();
         Money baseRate = Money.of(1.00);
         ParkingLot lot = new ParkingLot("1","Test Lot",lotAddress,baseRate);
-        Customer tempCustomer = new Customer("CUST-1","Jessica","Jones","6278549652",customerAddress);
+        Customer tempCustomer = new Customer.CustomerBuilder("Jessica","Jones")
+                .withPhoneNumber("6278549652")
+                .withAddress(customerAddress).build();
         
         //Set up parking charge variables
         HashMap<String, Boolean> days = new HashMap();

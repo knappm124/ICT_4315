@@ -7,6 +7,7 @@
 package edu.du.ict4315.parking;
 
 import edu.du.ict4315.currency.Money;
+import edu.du.ict4315.parking.ParkingTransaction.ParkingTransactionBuilder;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +30,13 @@ public class TransactionManager {
 
   public ParkingTransaction park(LocalDateTime d, ParkingPermit p, ParkingLot l) {
     ParkingTransaction transaction = null;
-    if ( l != null && p != null && l != null ) {
+    if ( l != null && p != null ) {
       Money money = l.getParkingCharges(p, d);
-      transaction = new ParkingTransaction(d, p, l, money);
+      transaction = new ParkingTransactionBuilder(l)
+              .withDate(d)
+              .withParkingPermit(p)
+              .withMoney(money)
+              .build();
       transactions.add(transaction);
     } else {
       

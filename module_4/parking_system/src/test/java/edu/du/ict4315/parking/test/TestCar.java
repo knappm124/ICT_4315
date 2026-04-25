@@ -18,9 +18,14 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class TestCar {
 
-   private Customer customer = new Customer("CUST-1", "Sam", "Doe", "303-222-1111", 
-        new Address.Builder().withStreetAddress1("111 Main St.")
-            .withCity("Denver").withState("CO").withZip("80201").build());
+   private Customer customer = new Customer.CustomerBuilder("Sam", "Doe")
+           .withPhoneNumber("303-222-1111")
+           .withAddress(new Address.Builder()
+                .withStreetAddress1("111 Main St.")
+                .withCity("Denver")
+                .withState("CO")
+                .withZip("80201").build()).build();
+        
    
    @Test
    void testConstructors() {

@@ -14,7 +14,7 @@ public class Car {
 	
 	public Car() {
 		type = CarType.COMPACT;
-		owner = new Customer();
+		owner = new Customer.CustomerBuilder("","").build();
 	}
 	
 	public Car(CarType type, String licensePlate, Customer owner) {

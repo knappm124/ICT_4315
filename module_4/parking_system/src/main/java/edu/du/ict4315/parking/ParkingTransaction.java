@@ -24,26 +24,12 @@ public class ParkingTransaction {
     private ParkingLot parkingLot;
     private Money chargedAmount;
 
-    public ParkingTransaction(LocalDateTime d, ParkingPermit p, ParkingLot l, Money m) {
-        transactionDate = Instant.now();
-        date = d;
-        permit = p;
-        parkingLot = l;
-        //Convert end date from instant to localdatetime and calculate hourly difference
-        LocalDateTime ldt = LocalDateTime.ofInstant(transactionDate, ZoneOffset.of("-07:00"));
-        Duration between = Duration.between(date,ldt);
-        int hours = (int) between.toHours();
-        //Create day HashMap
-        String nextDay = date.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
-        HashMap<String,Boolean> days = new HashMap();
-        
-        //Loop through days until ldt is reached, and populate hash map with values
-        for(int i = 0; i < (int)between.toDays(); i++){
-            days.put(nextDay, false);
-            d.plusDays(1);
-            nextDay = date.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
-        }
-        chargedAmount = l.getParkingChargeStrategy().parkingCharge(l, days, hours, permit);
+    private ParkingTransaction(ParkingTransactionBuilder parkingTransactionBuilder) {
+        this.transactionDate = parkingTransactionBuilder.transactionDate;
+        this.date = parkingTransactionBuilder.date;
+        this.permit = parkingTransactionBuilder.permit;
+        this.parkingLot = parkingTransactionBuilder.parkingLot;
+        this.chargedAmount = parkingTransactionBuilder.chargedAmount;
     }
 
     public Money getChargedAmount() {
@@ -67,4 +53,36 @@ public class ParkingTransaction {
     }
 
     // TODO: toString()
+    
+    public static class ParkingTransactionBuilder {
+        private Instant transactionDate;
+        private LocalDateTime date;
+        private ParkingPermit permit;
+        private ParkingLot parkingLot;
+        private Money chargedAmount;
+        
+        public ParkingTransactionBuilder(ParkingLot parkingLot) {
+            this.transactionDate = Instant.now();
+            this.parkingLot = parkingLot;
+        }
+        
+        public ParkingTransactionBuilder withDate(LocalDateTime date) {
+            this.date = date;
+            return this;
+        }
+        
+        public ParkingTransactionBuilder withParkingPermit(ParkingPermit permit){
+            this.permit = permit;
+            return this;
+        }
+        
+        public ParkingTransactionBuilder withMoney(Money chargedAmount){
+            this.chargedAmount = chargedAmount;
+            return this;
+        }
+        
+        public ParkingTransaction build() {
+            return new ParkingTransaction(this);
+        }
+    }
 }
