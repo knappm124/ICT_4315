@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package parking.charges.strategy;
+package edu.du.ict4315.parking.charges.strategy.test;
 
-import edu.du.ict4315.parking.charges.strategy.BaseStrategyCharge;
+import edu.du.ict4315.parking.charges.strategy.WeekendDiscountCharge;
 import edu.du.ict4315.currency.Money;
 import edu.du.ict4315.parking.Address;
 import edu.du.ict4315.parking.Car;
@@ -12,6 +12,7 @@ import edu.du.ict4315.parking.CarType;
 import edu.du.ict4315.parking.Customer;
 import edu.du.ict4315.parking.ParkingLot;
 import edu.du.ict4315.parking.ParkingPermit;
+import edu.du.ict4315.parking.charges.strategy.WeekendDiscountCharge;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import org.junit.jupiter.api.Test;
@@ -21,13 +22,13 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author melyg
  */
-public class BaseStrategyChargeTest {
+public class WeekendDiscountChargeTest {
     
-    public BaseStrategyChargeTest() {
+    public WeekendDiscountChargeTest() {
     }
 
     /**
-     * Test of parkingCharge method, of class BaseStratgeyCharge.
+     * Test of parkingCharge method, of class WeekendDiscountCharge.
      */
     @Test
     public void testParkingCharge() {
@@ -46,7 +47,7 @@ public class BaseStrategyChargeTest {
                 .build();
         Money baseRate = Money.of(1.00);
         ParkingLot lot = new ParkingLot("1","Test Lot",lotAddress,baseRate);
-        Customer tempCustomer = new Customer.CustomerBuilder("Jessica","Jones")
+                Customer tempCustomer = new Customer.CustomerBuilder("Jessica","Jones")
                 .withPhoneNumber("6278549652")
                 .withAddress(customerAddress).build();
         
@@ -62,16 +63,17 @@ public class BaseStrategyChargeTest {
         ParkingPermit permit = new ParkingPermit("1",compactCar,LocalDateTime.now().plusYears(3));
         Car suv = new Car(CarType.SUV,"DE5V6H2",tempCustomer);
         ParkingPermit permit2 = new ParkingPermit("2",suv,LocalDateTime.now().plusYears(2));
-        BaseStrategyCharge instance = new BaseStrategyCharge();
         
-        //Parking lot rate is $1 per hour, 56 hours should be $56, for a compact it should be 20% less
-        Money expResult = Money.of(56.0);
+        WeekendDiscountCharge instance = new WeekendDiscountCharge();
+        
+        //Parking lot rate is $1 per hour, 1 of the days is a weekend and  the rest are weekdays, so 1 day is $19.20, 1 day is $24, 
+        //and the remainder is $8, which is a total of $51.20 and the Compact car will be 20% less at $40.96
+        Money expResult = Money.of(51.20);
         Money result = instance.parkingCharge(lot, days, timeParked, permit2);
-        assertEquals(expResult.doubleValue(), result.doubleValue());        
+        assertEquals(expResult, result);
         
-        Money expResult2 = Money.of(44.8);
+        Money expResult2 = Money.of(40.96);
         Money result2 = instance.parkingCharge(lot, days, timeParked, permit);
-        assertEquals(expResult2.doubleValue(), result2.doubleValue());
+        assertEquals(expResult2, result2);
     }
-    
 }

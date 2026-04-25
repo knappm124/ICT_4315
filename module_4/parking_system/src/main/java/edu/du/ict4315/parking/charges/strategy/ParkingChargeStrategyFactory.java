@@ -18,9 +18,9 @@ public class ParkingChargeStrategyFactory {
     private static final Map<String,Supplier<ParkingChargeStrategy>> strategyMap = new HashMap();
     
     static {
-        strategyMap.put("Base", BaseStrategyCharge::new);
-        strategyMap.put("Weekend",WeekendDiscountCharge::new);
-        strategyMap.put("SpecialDay",SpecialDayDiscountCharge::new);
+        strategyMap.put("BaseStrategy", BaseStrategyCharge::new);
+        strategyMap.put("WeekendDiscount",WeekendDiscountCharge::new);
+        strategyMap.put("SpecialDayDiscount",SpecialDayDiscountCharge::new);
     }
     
     
@@ -31,4 +31,6 @@ public class ParkingChargeStrategyFactory {
             throw new IllegalArgumentException(type + " parking strategy is not a valid strategy");
         }
     }
+    
+    
 }
