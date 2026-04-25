@@ -8,9 +8,16 @@ package edu.du.ict4315.parking;
 
 import edu.du.ict4315.currency.Money;
 import edu.du.ict4315.parking.ParkingTransaction.ParkingTransactionBuilder;
+import edu.du.ict4315.parking.charges.strategy.ParkingChargeStrategyFactory;
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -23,6 +30,7 @@ public class TransactionManager {
 
   private List<ParkingTransaction> transactions = new ArrayList<ParkingTransaction>();
   private RealParkingOffice office;
+  private static ParkingChargeStrategyFactory strategyFactory = new ParkingChargeStrategyFactory();
 
   public TransactionManager(RealParkingOffice office) {
     this.office = office;
@@ -31,8 +39,28 @@ public class TransactionManager {
   public ParkingTransaction park(LocalDateTime d, ParkingPermit p, ParkingLot l) {
     ParkingTransaction transaction = null;
     if ( l != null && p != null ) {
-      Money money = l.getParkingCharges(p, d);
-      transaction = new ParkingTransactionBuilder(l)
+        var chargeStrategy = strategyFactory.createStrategy("Base");
+        
+        //Convert end time to LocalDateTime and calculate hourly difference
+        Instant n = Instant.now();
+        LocalDateTime ldt = LocalDateTime.ofInstant(n, ZoneOffset.of("-07:00"));
+        Duration between = Duration.between(d,ldt);
+        int hours = (int) between.toHours();
+        
+        //Create day HashMap
+        String nextDay = d.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        HashMap<String, Boolean> days = new HashMap();
+        
+        //Loop through days until ldt is reached, and populate HashMap with those values
+        LocalDateTime tempDate = d;
+        for(int i = 0; i < (int) between.toDays(); i++) {
+            days.put(nextDay, false);
+            tempDate = tempDate.plusDays(1);
+            nextDay = tempDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        }
+        
+        Money money = chargeStrategy.parkingCharge(l, days, hours, p);
+        transaction = new ParkingTransactionBuilder(l)
               .withDate(d)
               .withParkingPermit(p)
               .withMoney(money)
