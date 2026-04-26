@@ -47,7 +47,7 @@ public class WeekendDiscountChargeTest {
                 .build();
         Money baseRate = Money.of(1.00);
         ParkingLot lot = new ParkingLot("1","Test Lot",lotAddress,baseRate);
-                Customer tempCustomer = new Customer.CustomerBuilder("Jessica","Jones")
+                Customer tempCustomer = new Customer.CustomerBuilder("Jessica", "Jones")
                 .withPhoneNumber("6278549652")
                 .withAddress(customerAddress).build();
         

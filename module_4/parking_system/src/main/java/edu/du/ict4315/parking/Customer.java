@@ -77,7 +77,7 @@ public class Customer {
         sb.append(", ");
         sb.append(firstName);
         sb.append("\n");
-        sb.append(address);
+        sb.append(address.toString());
         sb.append("\n");
         sb.append(phoneNumber);
         return sb.toString();

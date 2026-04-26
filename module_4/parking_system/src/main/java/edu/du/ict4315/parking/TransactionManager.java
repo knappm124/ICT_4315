@@ -39,7 +39,7 @@ public class TransactionManager {
   public ParkingTransaction park(LocalDateTime d, ParkingPermit p, ParkingLot l) {
     ParkingTransaction transaction = null;
     if ( l != null && p != null ) {
-        var chargeStrategy = strategyFactory.createStrategy("Base");
+        var chargeStrategy = strategyFactory.createStrategy("BaseStrategy");
         
         //Convert end time to LocalDateTime and calculate hourly difference
         Instant n = Instant.now();

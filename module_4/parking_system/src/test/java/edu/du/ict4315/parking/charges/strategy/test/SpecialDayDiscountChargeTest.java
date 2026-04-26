@@ -4,7 +4,6 @@
  */
 package edu.du.ict4315.parking.charges.strategy.test;
 
-import edu.du.ict4315.parking.charges.strategy.SpecialDayDiscountCharge;
 import edu.du.ict4315.currency.Money;
 import edu.du.ict4315.parking.Address;
 import edu.du.ict4315.parking.Car;
