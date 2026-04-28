@@ -55,7 +55,7 @@ class TestParkingOffice {
   }
   
   private Customer createCustomer(Address address) {
-    Customer customer = new Customer();
+    Customer customer = new Customer.CustomerBuilder("","").build();
     customer.setFirstName(fNames[random.nextInt(fNames.length)]);
     customer.setLastName(lNames[random.nextInt(lNames.length)]);
     customer.setPhoneNumber(String.format("303-%3d-%04d", random.nextInt(900)+100,random.nextInt(10000)));

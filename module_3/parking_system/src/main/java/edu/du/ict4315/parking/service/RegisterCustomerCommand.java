@@ -55,13 +55,10 @@ public class RegisterCustomerCommand implements Command {
         } catch (IOException e){
             System.out.println(e.getMessage());
         }
-        //Create new customer
-        Customer tempCustomer = new Customer();
         
-        //Update name and phone number
-        tempCustomer.setFirstName(params.getProperty("firstName"));
-        tempCustomer.setLastName(params.getProperty("lastName"));
-        tempCustomer.setPhoneNumber(params.getProperty("phoneNumber"));
+        String firstName = params.getProperty("firstName");
+        String lastName = params.getProperty("lastName");
+        String phoneNumber = params.getProperty("phoneNumber");
         
         //Use builder to create Address object
         Address tempAddress = new Address.Builder()
@@ -71,7 +68,12 @@ public class RegisterCustomerCommand implements Command {
                 .withState(params.getProperty("state"))
                 .withZip(params.getProperty("zip"))
                 .build();
-        tempCustomer.setAddress(tempAddress);
+        
+        Customer tempCustomer = new Customer.CustomerBuilder(firstName,lastName)
+                .withPhoneNumber(phoneNumber)
+                .withAddress(tempAddress)
+                .build();
+        
         return office.register(tempCustomer);
     }
 
