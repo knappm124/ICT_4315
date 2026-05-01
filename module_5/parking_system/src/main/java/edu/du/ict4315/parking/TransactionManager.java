@@ -60,5 +60,12 @@ public class TransactionManager {
                 .map(transaction -> transaction.getChargedAmount())
                 .reduce(Money.of(0.0), (a, b) -> Money.add(a, b));
     }
-
+    
+    public ParkingPermit getPermit(String permitId){
+        return office.getParkingPermit(permitId);
+    }
+    
+    public ParkingLot getParkingLot(String lotId){
+        return office.getParkingLot(lotId);
+    }
 }
