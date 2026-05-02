@@ -18,7 +18,7 @@ public class ParkingLot {
     private Address address;
     private Money baseRate = Money.of(5.00);
     private BaseStrategyCharge strategy = new BaseStrategyCharge();
-    private ArrayList<ParkingObserver> observers;
+    private ArrayList<ParkingObserver> observers = new ArrayList<>();
     private ParkingEvent event;
 
     public ParkingLot(String id, String name, Address address) {
@@ -66,19 +66,26 @@ public class ParkingLot {
         return address;
     }
 
+    public ParkingEvent getParkingEvent(){
+        return event;
+    }
+    
+    public void setParkingEvent(ParkingEvent event){
+        this.event = event;
+    }
+    
     public ParkingChargeStrategy getParkingChargeStrategy() {
         return strategy;
     }
 
-    // Method for permit-required-on-enter lot
-    public void enterLot(LocalDateTime in, String permitId) {
-        event = new ParkingEvent(in, permitId);
+    public void enter(LocalDateTime time, String permitId) {
+        event = new ParkingEvent(time, permitId, this);
         notifyObservers();
     }
 
     // Method for permit-required-on-exit lot
-    public void exitLot(LocalDateTime in, LocalDateTime out, String permitId) {
-        event = new ParkingEvent(in, out, permitId);
+    public void exit(LocalDateTime time, String permitId) {
+        event = new ParkingEvent(time, permitId, this);
         notifyObservers();
     }
     
@@ -94,7 +101,7 @@ public class ParkingLot {
     
     public void notifyObservers(){
         for (ParkingObserver observer : observers){
-            observer.update(event, this.id);
+            observer.update(event);
         }
     }
 }

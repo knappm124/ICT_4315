@@ -18,6 +18,7 @@ package edu.du.ict4315.parking.service;
 import edu.du.ict4315.parking.Car;
 import edu.du.ict4315.parking.CarType;
 import edu.du.ict4315.parking.Customer;
+import edu.du.ict4315.parking.ParkingEvent;
 import edu.du.ict4315.parking.ParkingLot;
 import edu.du.ict4315.parking.ParkingPermit;
 import edu.du.ict4315.parking.ParkingTransaction;
@@ -82,7 +83,8 @@ public class ParkingService {
           LocalDateTime dateTime = checkDateTime(args[2]);
           ParkingLot pl = checkParkingLot(args[0]);
           ParkingPermit parkedCar = checkParkingPermit(args[1]);
-          ParkingTransaction transaction = parkingOffice.park(dateTime, parkedCar, pl);
+          ParkingEvent event = new ParkingEvent(dateTime,parkedCar.getId(),pl);
+          ParkingTransaction transaction = parkingOffice.park(event);
           if ( transaction != null ) {
             // Updated output to simply post the charge amount.
             messages.add(transaction.getChargedAmount().toString());

@@ -11,11 +11,23 @@ package edu.du.ict4315.parking;
 public class ParkingObserver {
     TransactionManager manager;
     
-    public void update(ParkingEvent event, String parkingLotId){
-        if(event.getTimeOut() == null){
-            manager.park(event.getTimeIn(), manager.getPermit(event.getPermitId()), manager.getParkingLot(parkingLotId));
-        } else {
-            manager.park(event.getTimeOut(), manager.getPermit(event.getPermitId()), manager.getParkingLot(parkingLotId));
-        }
+    public ParkingObserver(TransactionManager manager){
+        this.manager = manager;
+    }
+    
+    public ParkingObserver(RealParkingOffice rpo){
+        this.manager = rpo.getTransactionManager();
+    }
+    
+    public void update(ParkingEvent event){
+            manager.park(event);
+    }
+    
+    public TransactionManager getTransactionManager() {
+        return manager;
+    }
+   
+    public void setTransactionManager(TransactionManager manager) {
+        this.manager = manager;
     }
 }

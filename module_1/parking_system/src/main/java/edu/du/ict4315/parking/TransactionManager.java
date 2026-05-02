@@ -29,7 +29,7 @@ public class TransactionManager {
 
   public ParkingTransaction park(LocalDateTime d, ParkingPermit p, ParkingLot l) {
     ParkingTransaction transaction = null;
-    if ( l != null && p != null && l != null ) {
+    if ( d != null && p != null && l != null ) {
       Money money = l.getParkingCharges(p, d);
       transaction = new ParkingTransaction(d, p, l, money);
       transactions.add(transaction);

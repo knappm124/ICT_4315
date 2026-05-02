@@ -7,7 +7,6 @@
 package edu.du.ict4315.parking;
 
 import edu.du.ict4315.currency.Money;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +31,8 @@ public class RealParkingOffice {
         return permitManager.register(c).getId();
     }
 
-    public ParkingTransaction park(LocalDateTime d, ParkingPermit p, ParkingLot l) {
-        return transactionManager.park(d, p, l);
+    public ParkingTransaction park(ParkingEvent event) {
+        return transactionManager.park(event);
     }
 
     public Money getParkingCharges(ParkingPermit p) {
@@ -136,5 +135,9 @@ public class RealParkingOffice {
         }
 
         return result;
+    }
+    
+    public TransactionManager getTransactionManager(){
+        return transactionManager;
     }
 }

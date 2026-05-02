@@ -160,11 +160,11 @@ class TestParkingOffice {
     // create a 2-hour charge
     LocalDateTime dt = LocalDateTime.now();
     dt = dt.minusHours(-1);
-    lot.enterLot(dt, id1);
+    lot.enter(dt, id1);
     // create a 2-day charge
     dt = LocalDateTime.now();
     dt = dt.minusDays(2);
-    lot.enterLot(dt, id2);
+    lot.enter(dt, id2);
   }
 
   private String[] getPermitsWithCustomers(int howMany) {

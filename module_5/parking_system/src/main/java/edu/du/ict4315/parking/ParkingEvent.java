@@ -11,31 +11,38 @@ import java.time.LocalDateTime;
  * @author melissa
  */
 public class ParkingEvent {
-    private LocalDateTime in;
-    private LocalDateTime out;
+    private LocalDateTime time;
     private String permitId;
+    private ParkingLot lot;
     
-    public ParkingEvent(LocalDateTime in, LocalDateTime out, String permitId){
-        this.in = in;
-        this.out = out;
+    public ParkingEvent(LocalDateTime time, String permitId, ParkingLot lot){
+        this.time = time;
         this.permitId = permitId;
-    }
-    
-    public ParkingEvent(LocalDateTime in, String permitId){
-        this.in = in;
-        this.out = null;
-        this.permitId = permitId;
+        this.lot = lot;
     }
     
     public String getPermitId() {
         return permitId;
     }
     
-    public LocalDateTime getTimeIn(){
-        return in;
+    public void setPermitId(String permitId){
+        this.permitId = permitId;
     }
     
-    public LocalDateTime getTimeOut(){
-        return out;
+    public LocalDateTime getTime(){
+        return time;
+    }
+    
+    public void setTime(LocalDateTime time){
+        this.time = time;
+    }
+    
+    public ParkingLot getParkingLot(){
+        return lot;
+    }
+    
+    public void setParkingLot(ParkingLot lot){
+        this.lot = lot;
     }
 }
+

@@ -7,7 +7,6 @@
 package edu.du.ict4315.parking;
 
 import edu.du.ict4315.currency.Money;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -20,22 +19,18 @@ public class TransactionManager {
 
     private static final Logger logger = Logger.getLogger(TransactionManager.class.getName());
 
-    private List<ParkingTransaction> transactions = new ArrayList<ParkingTransaction>();
+    private List<ParkingTransaction> transactions = new ArrayList<>();
     private RealParkingOffice office;
 
     public TransactionManager(RealParkingOffice office) {
         this.office = office;
     }
 
-    public ParkingTransaction park(LocalDateTime d, ParkingPermit p, ParkingLot l) {
-        ParkingTransaction transaction = null;
-        if (l != null && p != null && l != null) {
-            Money money = l.getParkingCharges(p, d);
-            transaction = new ParkingTransaction(d, p, l, money);
-            transactions.add(transaction);
-        } else {
-
-        }
+    public ParkingTransaction park(ParkingEvent event) {
+        ParkingLot l = event.getParkingLot();
+        ParkingPermit p = office.getParkingPermit(event.getPermitId());
+        ParkingTransaction transaction = new ParkingTransaction(event.getTime(), p, l, l.getBaseRate());
+        transactions.add(transaction);
         return transaction;
     }
 
@@ -67,5 +62,9 @@ public class TransactionManager {
     
     public ParkingLot getParkingLot(String lotId){
         return office.getParkingLot(lotId);
+    }
+    
+    public List<ParkingTransaction> getTransactions(){
+        return transactions;
     }
 }
