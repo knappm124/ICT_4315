@@ -6,6 +6,7 @@
 //////////////////////////
 package edu.du.ict4315.parking;
 
+import edu.du.ict4315.parking.observer.ParkingEvent;
 import edu.du.ict4315.currency.Money;
 import java.util.ArrayList;
 import java.util.List;

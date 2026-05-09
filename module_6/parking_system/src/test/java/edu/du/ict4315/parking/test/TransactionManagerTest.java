@@ -8,7 +8,7 @@ import edu.du.ict4315.currency.Money;
 import edu.du.ict4315.parking.Car;
 import edu.du.ict4315.parking.CarType;
 import edu.du.ict4315.parking.Customer;
-import edu.du.ict4315.parking.ParkingEvent;
+import edu.du.ict4315.parking.observer.ParkingEvent;
 import edu.du.ict4315.parking.ParkingLot;
 import edu.du.ict4315.parking.ParkingPermit;
 import edu.du.ict4315.parking.ParkingTransaction;

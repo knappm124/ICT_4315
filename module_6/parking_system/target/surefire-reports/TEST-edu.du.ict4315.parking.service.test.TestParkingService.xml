@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="edu.du.ict4315.parking.service.test.TestParkingService" time="0.013" tests="4" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="26"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Users/melissa/Documents/GitHub/ICT_4315/module_6/parking_system/target/test-classes:/Users/melissa/Documents/GitHub/ICT_4315/module_6/parking_system/target/classes:/Users/melissa/.m2/repository/com/google/code/gson/gson/2.13.2/gson-2.13.2.jar:/Users/melissa/.m2/repository/com/google/errorprone/error_prone_annotations/2.41.0/error_prone_annotations-2.41.0.jar:/Users/melissa/.m2/repository/org/apache/maven/plugins/maven-surefire-plugin/3.5.5/maven-surefire-plugin-3.5.5.jar:/Users/melissa/.m2/repository/org/apache/maven/surefire/surefire-api/3.5.5/surefire-api-3.5.5.jar:/Users/melissa/.m2/repository/org/apache/maven/surefire/surefire-logger-api/3.5.5/surefire-logger-api-3.5.5.jar:/Users/melissa/.m2/repository/org/apache/maven/surefire/surefire-shared-utils/3.5.5/surefire-shared-utils-3.5.5.jar:/Users/melissa/.m2/repository/org/apache/maven/surefire/surefire-extensions-api/3.5.5/surefire-extensions-api-3.5.5.jar:/Users/melissa/.m2/repository/org/apache/maven/surefire/maven-surefire-common/3.5.5/maven-surefire-common-3.5.5.jar:/Users/melissa/.m2/repository/org/apache/maven/surefire/surefire-booter/3.5.5/surefire-booter-3.5.5.jar:/Users/melissa/.m2/repository/org/apache/maven/surefire/surefire-extensions-spi/3.5.5/surefire-extensions-spi-3.5.5.jar:/Users/melissa/.m2/repository/org/apache/maven/resolver/maven-resolver-util/1.4.1/maven-resolver-util-1.4.1.jar:/Users/melissa/.m2/repository/org/apache/maven/resolver/maven-resolver-api/1.4.1/maven-resolver-api-1.4.1.jar:/Users/melissa/.m2/repository/org/apache/maven/shared/maven-common-artifact-filters/3.4.0/maven-common-artifact-filters-3.4.0.jar:/Users/melissa/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Users/melissa/.m2/repository/org/codehaus/plexus/plexus-java/1.5.2/plexus-java-1.5.2.jar:/Users/melissa/.m2/repository/org/ow2/asm/asm/9.9.1/asm-9.9.1.jar:/Users/melissa/.m2/repository/com/thoughtworks/qdox/qdox/2.2.0/qdox-2.2.0.jar:/Users/melissa/.m2/repository/org/junit/jupiter/junit-jupiter-api/6.0.3/junit-jupiter-api-6.0.3.jar:/Users/melissa/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/melissa/.m2/repository/org/junit/platform/junit-platform-commons/6.0.3/junit-platform-commons-6.0.3.jar:/Users/melissa/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/melissa/.m2/repository/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar:/Users/melissa/.m2/repository/org/junit/jupiter/junit-jupiter-engine/6.0.3/junit-jupiter-engine-6.0.3.jar:/Users/melissa/.m2/repository/org/junit/platform/junit-platform-engine/6.0.3/junit-platform-engine-6.0.3.jar:/Users/melissa/.m2/repository/org/junit/jupiter/junit-jupiter-params/6.0.3/junit-jupiter-params-6.0.3.jar:"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="America/New_York"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="java.vm.specification.version" value="26"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-26.jdk/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/melissa/Documents/GitHub/ICT_4315/module_6/parking_system/target/surefire/surefirebooter-20260509161656752_3.jar /Users/melissa/Documents/GitHub/ICT_4315/module_6/parking_system/target/surefire 2026-05-09T16-16-56_700-jvmRun1 surefire-20260509161656752_1tmp surefire_0-20260509161656752_2tmp"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/Users/melissa/Documents/GitHub/ICT_4315/module_6/parking_system/target/test-classes:/Users/melissa/Documents/GitHub/ICT_4315/module_6/parking_system/target/classes:/Users/melissa/.m2/repository/com/google/code/gson/gson/2.13.2/gson-2.13.2.jar:/Users/melissa/.m2/repository/com/google/errorprone/error_prone_annotations/2.41.0/error_prone_annotations-2.41.0.jar:/Users/melissa/.m2/repository/org/apache/maven/plugins/maven-surefire-plugin/3.5.5/maven-surefire-plugin-3.5.5.jar:/Users/melissa/.m2/repository/org/apache/maven/surefire/surefire-api/3.5.5/surefire-api-3.5.5.jar:/Users/melissa/.m2/repository/org/apache/maven/surefire/surefire-logger-api/3.5.5/surefire-logger-api-3.5.5.jar:/Users/melissa/.m2/repository/org/apache/maven/surefire/surefire-shared-utils/3.5.5/surefire-shared-utils-3.5.5.jar:/Users/melissa/.m2/repository/org/apache/maven/surefire/surefire-extensions-api/3.5.5/surefire-extensions-api-3.5.5.jar:/Users/melissa/.m2/repository/org/apache/maven/surefire/maven-surefire-common/3.5.5/maven-surefire-common-3.5.5.jar:/Users/melissa/.m2/repository/org/apache/maven/surefire/surefire-booter/3.5.5/surefire-booter-3.5.5.jar:/Users/melissa/.m2/repository/org/apache/maven/surefire/surefire-extensions-spi/3.5.5/surefire-extensions-spi-3.5.5.jar:/Users/melissa/.m2/repository/org/apache/maven/resolver/maven-resolver-util/1.4.1/maven-resolver-util-1.4.1.jar:/Users/melissa/.m2/repository/org/apache/maven/resolver/maven-resolver-api/1.4.1/maven-resolver-api-1.4.1.jar:/Users/melissa/.m2/repository/org/apache/maven/shared/maven-common-artifact-filters/3.4.0/maven-common-artifact-filters-3.4.0.jar:/Users/melissa/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Users/melissa/.m2/repository/org/codehaus/plexus/plexus-java/1.5.2/plexus-java-1.5.2.jar:/Users/melissa/.m2/repository/org/ow2/asm/asm/9.9.1/asm-9.9.1.jar:/Users/melissa/.m2/repository/com/thoughtworks/qdox/qdox/2.2.0/qdox-2.2.0.jar:/Users/melissa/.m2/repository/org/junit/jupiter/junit-jupiter-api/6.0.3/junit-jupiter-api-6.0.3.jar:/Users/melissa/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/melissa/.m2/repository/org/junit/platform/junit-platform-commons/6.0.3/junit-platform-commons-6.0.3.jar:/Users/melissa/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/melissa/.m2/repository/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar:/Users/melissa/.m2/repository/org/junit/jupiter/junit-jupiter-engine/6.0.3/junit-jupiter-engine-6.0.3.jar:/Users/melissa/.m2/repository/org/junit/platform/junit-platform-engine/6.0.3/junit-platform-engine-6.0.3.jar:/Users/melissa/.m2/repository/org/junit/jupiter/junit-jupiter-params/6.0.3/junit-jupiter-params-6.0.3.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/melissa"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2026-04-21"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk-26.jdk/Contents/Home"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/Users/melissa/Documents/GitHub/ICT_4315/module_6/parking_system"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="apple.awt.application.name" value="ForkedBooter"/>
+    <property name="surefire.real.class.path" value="/Users/melissa/Documents/GitHub/ICT_4315/module_6/parking_system/target/surefire/surefirebooter-20260509161656752_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.runtime.version" value="26.0.1+8-34"/>
+    <property name="user.name" value="melissa"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="26.4.1"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="maven.ext.class.path" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/java/maven-nblib/netbeans-eventspy.jar"/>
+    <property name="localRepository" value="/Users/melissa/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="/var/folders/lp/jcfy89051qvcx9z7h_3_vj7w0000gn/T/"/>
+    <property name="java.version" value="26.0.1"/>
+    <property name="user.dir" value="/Users/melissa/Documents/GitHub/ICT_4315/module_6/parking_system"/>
+    <property name="os.arch" value="aarch64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/melissa/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="26.0.1+8-34"/>
+    <property name="stdin.encoding" value="UTF-8"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.class.version" value="70.0"/>
+  </properties>
+  <testcase name="testCarSuccess" classname="edu.du.ict4315.parking.service.test.TestParkingService" time="0.004">
+    <system-out><![CDATA[Created car CAR: license_plate=ABC-123, customer=CUST-139
+P1024
+Created car CAR: license_plate=DEF-234, customer=CUST-139
+P1025
+]]></system-out>
+    <system-err><![CDATA[May 09, 2026 4:16:57 PM edu.du.ict4315.parking.service.ParkingService performCommand
+INFO: Performing CUSTOMER command
+May 09, 2026 4:16:57 PM edu.du.ict4315.parking.service.ParkingService performCommand
+INFO: Performing CAR command
+May 09, 2026 4:16:57 PM edu.du.ict4315.parking.service.ParkingService performCommand
+INFO: Performing CAR command
+]]></system-err>
+  </testcase>
+  <testcase name="testCustomerSuccess" classname="edu.du.ict4315.parking.service.test.TestParkingService" time="0.001">
+    <system-out><![CDATA[Created customer CUSTOMER: lastName=Smith
+CUST-142
+Created customer CUSTOMER: Jones
+CUST-143
+Created customer CUSTOMER: name=Nguyen
+CUST-144
+]]></system-out>
+    <system-err><![CDATA[May 09, 2026 4:16:57 PM edu.du.ict4315.parking.service.ParkingService performCommand
+INFO: Performing CUSTOMER command
+May 09, 2026 4:16:57 PM edu.du.ict4315.parking.service.ParkingService performCommand
+INFO: Performing CUSTOMER command
+May 09, 2026 4:16:57 PM edu.du.ict4315.parking.service.ParkingService performCommand
+INFO: Performing CUSTOMER command
+]]></system-err>
+  </testcase>
+  <testcase name="testCarFailure" classname="edu.du.ict4315.parking.service.test.TestParkingService" time="0.004">
+    <system-out><![CDATA[Result: CAR: 
+Cannot create car permit: wrong number of parameters
+Result: CAR: license_plate=GHI-987
+Cannot create car permit: wrong number of parameters
+Result: CAR: customer=null
+Cannot create car permit: wrong number of parameters
+]]></system-out>
+    <system-err><![CDATA[May 09, 2026 4:16:57 PM edu.du.ict4315.parking.service.ParkingService performCommand
+INFO: Performing CUSTOMER command
+May 09, 2026 4:16:57 PM edu.du.ict4315.parking.service.ParkingService performCommand
+INFO: Performing CAR command
+May 09, 2026 4:16:57 PM edu.du.ict4315.parking.service.ParkingService checkNumberOfParameters
+SEVERE: Not enough parameters! Expected 2 received 0
+May 09, 2026 4:16:57 PM edu.du.ict4315.parking.service.ParkingService performCommand
+INFO: Performing CAR command
+May 09, 2026 4:16:57 PM edu.du.ict4315.parking.service.ParkingService checkNumberOfParameters
+SEVERE: Not enough parameters! Expected 2 received 1
+May 09, 2026 4:16:57 PM edu.du.ict4315.parking.service.ParkingService performCommand
+INFO: Performing CAR command
+May 09, 2026 4:16:57 PM edu.du.ict4315.parking.service.ParkingService checkNumberOfParameters
+SEVERE: Not enough parameters! Expected 2 received 1
+]]></system-err>
+  </testcase>
+  <testcase name="testCustomerFailure" classname="edu.du.ict4315.parking.service.test.TestParkingService" time="0.0">
+    <system-out><![CDATA[Result: CUSTOMER: 
+Cannot create customer: wrong number of parameters
+]]></system-out>
+    <system-err><![CDATA[May 09, 2026 4:16:57 PM edu.du.ict4315.parking.service.ParkingService performCommand
+INFO: Performing CUSTOMER command
+May 09, 2026 4:16:57 PM edu.du.ict4315.parking.service.ParkingService checkNumberOfParameters
+SEVERE: Not enough parameters! Expected 1 received 0
+]]></system-err>
+  </testcase>
+</testsuite>

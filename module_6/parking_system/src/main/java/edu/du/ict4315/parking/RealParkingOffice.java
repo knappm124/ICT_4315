@@ -6,6 +6,7 @@
 ////////////////////
 package edu.du.ict4315.parking;
 
+import edu.du.ict4315.parking.observer.ParkingEvent;
 import edu.du.ict4315.currency.Money;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,10 +64,10 @@ public class RealParkingOffice {
     // It is final as no derived class of RealParkingLot can override it.
     public final void setupParkingLots() {
         String[][] parkingLotData = {
-            {"W", "Lot W", "E Jewell Ave", "", "Denver", "CO", "80210", "$5.00", "HOURLY"},
-            {"108", "Lot 108", "E Buchtel Ave", "", "Denver", "CO", "80210", "$2.00", "HOURLY"},
-            {"321", "Lot 321", "S Gaylord St", "", "Denver", "CO", "80210", "$8.00", "DAILY"},
-            {"301", "Lot 301", "E Evans Ave", "", "Denver", "CO", "80210", "$8.00", "DAILY"},};
+            {"W", "Lot W", "E Jewell Ave", "", "Denver", "CO", "80210", "$5.00", "HOURLY", "FlatRate"},
+            {"108", "Lot 108", "E Buchtel Ave", "", "Denver", "CO", "80210", "$2.00", "HOURLY","SpecialDay"},
+            {"321", "Lot 321", "S Gaylord St", "", "Denver", "CO", "80210", "$8.00", "DAILY","Weekend"},
+            {"301", "Lot 301", "E Evans Ave", "", "Denver", "CO", "80210", "$8.00", "DAILY","Compact"}};
 
         for (String[] row : parkingLotData) {
             Address address = new Address.Builder()
@@ -76,6 +77,7 @@ public class RealParkingOffice {
                     .withState(row[5])
                     .withZip(row[6]).build();
             ParkingLot lot = new ParkingLot(row[0], row[1], address, Money.of(row[7]),LotType.valueOf(row[8]));
+            lot.setParkingChargeStrategy(row[9]);
             addParkingLot(lot);
         }
     }

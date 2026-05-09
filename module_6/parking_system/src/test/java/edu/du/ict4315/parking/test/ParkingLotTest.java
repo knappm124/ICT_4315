@@ -8,9 +8,9 @@ import edu.du.ict4315.currency.Money;
 import edu.du.ict4315.parking.Car;
 import edu.du.ict4315.parking.CarType;
 import edu.du.ict4315.parking.Customer;
-import edu.du.ict4315.parking.ParkingEvent;
+import edu.du.ict4315.parking.observer.ParkingEvent;
 import edu.du.ict4315.parking.ParkingLot;
-import edu.du.ict4315.parking.ParkingObserver;
+import edu.du.ict4315.parking.observer.ParkingObserver;
 import edu.du.ict4315.parking.ParkingPermit;
 import edu.du.ict4315.parking.ParkingTransaction;
 import edu.du.ict4315.parking.RealParkingOffice;
@@ -35,12 +35,13 @@ public class ParkingLotTest {
     public void testGetParkingCharges() {
         RealParkingOffice rpo = new RealParkingOffice();
         ParkingLot l = rpo.getParkingLot("W");
-        LocalDateTime ldt = LocalDateTime.now();
+        LocalDateTime timeOut = LocalDateTime.now();
+        LocalDateTime timeIn = timeOut.minusHours(5);
         Customer cust = new Customer();
         Car c = new Car(CarType.SUV,"EK23G2D",cust);
-        ParkingPermit p = new ParkingPermit("P1001",c,ldt);
-        Money result = l.getParkingCharges(p,ldt);
-        Money expResult = Money.of(5.00);
+        ParkingPermit p = new ParkingPermit("P1001",c,timeOut.plusYears(3));
+        Money result = l.getParkingCharges(p,timeIn,timeOut);
+        Money expResult = Money.of(25.00);
         assertEquals(result,expResult);
     }
 
