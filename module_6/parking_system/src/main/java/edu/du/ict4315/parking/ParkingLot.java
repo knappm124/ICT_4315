@@ -17,6 +17,7 @@ public class ParkingLot {
     private String name;
     private Address address;
     private Money baseRate = Money.of(5.00);
+    private LotType type;
     private BaseStrategyCharge strategy = new BaseStrategyCharge();
     private ArrayList<ParkingObserver> observers = new ArrayList<>();
     private ParkingEvent event;
@@ -27,11 +28,12 @@ public class ParkingLot {
         this.address = address;
     }
 
-    public ParkingLot(String id, String name, Address address, Money baseRate) {
+    public ParkingLot(String id, String name, Address address, Money baseRate, LotType type) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.baseRate = baseRate;
+        this.type = type;
     }
 
     public Money getParkingCharges(ParkingPermit p, LocalDateTime in) {
@@ -42,6 +44,10 @@ public class ParkingLot {
         return baseRate;
     }
 
+    public LotType getType(){
+        return this.type;
+    }
+    
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

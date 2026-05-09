@@ -63,10 +63,10 @@ public class RealParkingOffice {
     // It is final as no derived class of RealParkingLot can override it.
     public final void setupParkingLots() {
         String[][] parkingLotData = {
-            {"W", "Lot W", "E Jewell Ave", "", "Denver", "CO", "80210", "$5.00"},
-            {"108", "Lot 108", "E Buchtel Ave", "", "Denver", "CO", "80210", "$2.00"},
-            {"321", "Lot 321", "S Gaylord St", "", "Denver", "CO", "80210", "$8.00"},
-            {"301", "Lot 301", "E Evans Ave", "", "Denver", "CO", "80210", "$8.00"},};
+            {"W", "Lot W", "E Jewell Ave", "", "Denver", "CO", "80210", "$5.00", "HOURLY"},
+            {"108", "Lot 108", "E Buchtel Ave", "", "Denver", "CO", "80210", "$2.00", "HOURLY"},
+            {"321", "Lot 321", "S Gaylord St", "", "Denver", "CO", "80210", "$8.00", "DAILY"},
+            {"301", "Lot 301", "E Evans Ave", "", "Denver", "CO", "80210", "$8.00", "DAILY"},};
 
         for (String[] row : parkingLotData) {
             Address address = new Address.Builder()
@@ -75,7 +75,7 @@ public class RealParkingOffice {
                     .withCity(row[4])
                     .withState(row[5])
                     .withZip(row[6]).build();
-            ParkingLot lot = new ParkingLot(row[0], row[1], address, Money.of(row[7]));
+            ParkingLot lot = new ParkingLot(row[0], row[1], address, Money.of(row[7]),LotType.valueOf(row[8]));
             addParkingLot(lot);
         }
     }
