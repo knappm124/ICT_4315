@@ -1,0 +1,12 @@
+edu\du\ict4315\parking\test\TransactionManagerTest.class
+parking\charges\strategy\WeekendDiscountChargeTest.class
+edu\du\ict4315\parking\test\TestCar.class
+edu\du\ict4315\currency\test\MoneyTest.class
+edu\du\ict4315\parking\service\test\RegisterCustomerCommandTest.class
+parking\charges\strategy\BaseStrategyChargeTest.class
+edu\du\ict4315\parking\test\ParkingLotTest.class
+parking\charges\strategy\SpecialDayDiscountChargeTest.class
+edu\du\ict4315\parking\service\test\RegisterCarCommandTest.class
+edu\du\ict4315\parking\test\ParkingObserverTest.class
+edu\du\ict4315\parking\service\test\TestParkingService.class
+edu\du\ict4315\parking\test\TestParkingOffice.class
