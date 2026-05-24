@@ -7,6 +7,7 @@ package edu.du.ict4315.parking.test;
 import edu.du.ict4315.parking.Customer;
 import edu.du.ict4315.parking.ParkingPermit;
 import edu.du.ict4315.parking.RealParkingOffice;
+import edu.du.ict4315.parking.serialization.ParkingResponse;
 import edu.du.ict4315.parking.service.ParkingService;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -81,11 +82,11 @@ public class TestParkingService {
         for (int i = 0; i < getInputCustomerCount(); i += 1) {
             String s = getInputCustomer(i);
             System.out.println("Testing " + s);
-            String result;
+            ParkingResponse result;
             try (InputStream is = new ByteArrayInputStream(s.getBytes())) {
                 result = parkingService.handleInput(is);
             }
-            Customer c = office.getCustomer(result);
+            Customer c = office.getCustomer(result.getMessage());
             assertNotNull(c);
             assertEquals(inputLN[i], c.getLastName());
             inputCN[i] = c.getId(); // Update Customer ID to actual id
@@ -94,9 +95,9 @@ public class TestParkingService {
         for (int i = 0; i < getInputCarCount(); i += 1) {
             String s = getInputCar(i);
             InputStream is = new ByteArrayInputStream(s.getBytes());
-            String result = parkingService.handleInput(is);
+            ParkingResponse result = parkingService.handleInput(is);
             is.close();
-            ParkingPermit permit = office.getParkingPermit(result);
+            ParkingPermit permit = office.getParkingPermit(result.getMessage());
             assertNotNull(permit);
             assertEquals(permit.getCar().getOwner().getId(), inputCN[i]);
             System.out.println("Result: " + result);

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package edu.du.ict4315.parking.command;
+import edu.du.ict4315.parking.serialization.ParkingResponse;
 import java.util.Properties;
 
 /**
@@ -15,5 +16,5 @@ import java.util.Properties;
 public interface Command {
     public String getCommandName();
     public String getDisplayName();
-    public String execute(Properties params);
+    public ParkingResponse execute(Properties params);
 }

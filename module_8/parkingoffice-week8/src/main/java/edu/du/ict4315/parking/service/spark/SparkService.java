@@ -15,6 +15,7 @@ import edu.du.ict4315.parking.command.ListParkingLotCommand;
 import edu.du.ict4315.parking.command.ParkCommand;
 import edu.du.ict4315.parking.command.RegisterCarCommand;
 import edu.du.ict4315.parking.command.RegisterCustomerCommand;
+import edu.du.ict4315.parking.serialization.ParkingResponse;
 import edu.du.ict4315.parking.util.spark.QueryParamsToProperties;
 import java.util.ArrayList;
 import java.util.List;
@@ -101,7 +102,8 @@ public class SparkService {
     // Execute the command with the properties
     String result = "";
     try {
-      result = cmd.execute(command.getCommandParameters());
+      ParkingResponse response = cmd.execute(command.getCommandParameters());
+      result = response.toString();
     } catch (NullPointerException ex) {
       logger.severe("Command execution failure: " + ex.getLocalizedMessage());
       failureMessage = ex.getLocalizedMessage();

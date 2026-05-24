@@ -21,6 +21,8 @@ import edu.du.ict4315.parking.command.ListParkingLotCommand;
 import edu.du.ict4315.parking.command.ParkCommand;
 import edu.du.ict4315.parking.command.RegisterCarCommand;
 import edu.du.ict4315.parking.command.RegisterCustomerCommand;
+import edu.du.ict4315.parking.serialization.ParkingRequest;
+import edu.du.ict4315.parking.serialization.ParkingResponse;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Map;
@@ -58,26 +60,12 @@ public class ParkingService {
     // Shared logic can be put in a support class.
     // To be a bit more robust, all Property keys are converted to lower case.
     // Values are left alone
-    public String performCommand(String commandName, String[] args) {
+    public String performCommand(String commandName, Properties props) {
         // Look up the command
         Command command = commands.getOrDefault(commandName, new DefaultCommand(commandName));
         logger.info("Received command: " + command.getDisplayName());
-        logger.info("  Args: " + String.join("||", args));
-        // Convert the args into a Properties (split on equals, discard if no =)
-        Properties properties = new Properties();
-        for (String string : args) {
-            if (string.isBlank()) {
-                break;
-            }
-            String[] keyValue = string.split("=");
-            if (keyValue.length == 2) {
-                properties.put(keyValue[0].toLowerCase(), keyValue[1]);
-            } else {
-                logger.info("Ignoring parameter " + string + ". Malformed.");
-            }
-        }
-        // Execute the command with the properties
-        return command.execute(properties);
+        logger.info("  Args: " + props.toString());
+        return command.execute(props).toString();
     }
 
     public String[] listCommands() {
@@ -85,18 +73,14 @@ public class ParkingService {
     }
 
     // This method handles interpreting the client requests
-    public String handleInput(InputStream in) {
+    public ParkingResponse handleInput(InputStream in) {
         // The scanner and input stream will be closed when we disconnect
         Scanner scanner = new Scanner(in);
-        ArrayList<String> data = new ArrayList<>();
-        while (scanner.hasNext()) {
-            String token = scanner.nextLine();
-            if (token.equals("end")) {
-                break;
-            }
-            data.add(token);
-        }
-        logger.log(Level.INFO, "data: {0}", String.join(", ", data));
-        return performCommand(data.remove(0), data.toArray(String[]::new));
+        String token = scanner.nextLine();
+        ParkingRequest req = new ParkingRequest(token);
+        String command = req.getCommand();
+        Properties props = req.getProps();
+        String result = performCommand(command,props);
+        return new ParkingResponse(result);
     }
 }

@@ -6,6 +6,7 @@ package edu.du.ict4315.parking.command;
 import edu.du.ict4315.parking.RealParkingOffice;
 import edu.du.ict4315.parking.Car;
 import edu.du.ict4315.parking.Customer;
+import edu.du.ict4315.parking.serialization.ParkingResponse;
 import edu.du.ict4315.parking.support.ParameterCheckUtilities;
 import java.io.IOException;
 import java.util.Arrays;
@@ -56,20 +57,20 @@ public class RegisterCarCommand implements Command {
     }
     
     @Override
-    public String execute(Properties params){
+    public ParkingResponse execute(Properties params){
          // Requires a licensePlate and a customer id
         String licensePlate = ParameterCheckUtilities.checkLicensePlate(params.getProperty("license"));
         String customerId = params.getProperty("customer");
-
+        int statusCode;
+        String message;
+        
         if (licensePlate == null) {
-            logger.info("Can't register car: missing license");
-            throw new IllegalArgumentException("Can't register car: Missing license plate");
-        }
-
-        if (customerId == null) {
-            logger.info("Can't register car: missing customer id");
-            throw new IllegalArgumentException("Can't register car: Missing customer");
-        }
+            statusCode = 400;
+            message = "Can't register car: missing license";
+        } else if (customerId == null) {
+            statusCode = 400;
+            message = "Can't register car: missing customer id";
+        } else {
 
         Customer customer = check.checkCustomer(customerId);
         Car car = new Car();
@@ -77,8 +78,13 @@ public class RegisterCarCommand implements Command {
         car.setOwner(customer);
 
         logger.info("Registering car " + car);
-
-        return office.register(car);
+        message = office.register(car);
+        statusCode = 200;
+        }
+        String json = "{'statuscode':" + statusCode;
+        json += ",'message':";
+        json += "}";
+        return new ParkingResponse(json);
     }
     
     @Override

@@ -5,6 +5,7 @@
  */
 package edu.du.ict4315.parking.command;
 
+import edu.du.ict4315.parking.serialization.ParkingResponse;
 import edu.du.ict4315.parking.support.PropertiesUtilities;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -35,9 +36,10 @@ public class DefaultCommand implements Command {
     }
 
     @Override
-    public String execute(Properties params) {
+    public ParkingResponse execute(Properties params) {
         logger.log(Level.SEVERE, "Requested unsupported command: " + registerName);
-        return getDisplayName();
+        ParkingResponse response = new ParkingResponse("{'statuscode':400,'message':'Unsupported command'}");
+        return response;
     }
 
 }

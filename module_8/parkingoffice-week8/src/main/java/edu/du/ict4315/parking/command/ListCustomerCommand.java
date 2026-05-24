@@ -5,6 +5,7 @@
 package edu.du.ict4315.parking.command;
 
 import edu.du.ict4315.parking.RealParkingOffice;
+import edu.du.ict4315.parking.serialization.ParkingResponse;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -36,10 +37,14 @@ public class ListCustomerCommand implements Command {
     }
 
     @Override
-    public String execute(Properties params) {
+    public ParkingResponse execute(Properties params) {
         // Currently parameters are ignored
         logger.info("Returning " + String.join(", ", parkingOffice.getCustomerIds()));
-        return String.join(",", parkingOffice.getCustomerIds());
+        String customers = String.join(",", parkingOffice.getCustomerIds());
+        String json = "{'statuscode':200,'message':";
+        json += customers;
+        json += "}";
+        return new ParkingResponse(json);
     }
 
 }

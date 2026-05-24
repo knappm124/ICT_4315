@@ -11,6 +11,7 @@ import edu.du.ict4315.parking.Customer;
 import edu.du.ict4315.parking.ParkingPermit;
 import edu.du.ict4315.parking.RealParkingOffice;
 import edu.du.ict4315.parking.service.ParkingService;
+import java.util.Properties;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -57,14 +58,14 @@ public class MiscellaneousCommandTest {
     @Test
     void testListCust() {
         System.out.println("List Customers");
-        String customers = service.performCommand("LISTCUST", new String[0]);
+        String customers = service.performCommand("LISTCUST", new Properties());
         System.out.println("Customers: " + customers);
     }
 
     @Test
     void testListLots() {
         System.out.println("List Parking Lots");
-        String lots = service.performCommand("LISTLOTS", new String[0]);
+        String lots = service.performCommand("LISTLOTS", new Properties());
         System.out.println("Parking Lots: " + lots);
     }
 }

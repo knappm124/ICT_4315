@@ -22,20 +22,11 @@ public class ParkingResponseTest {
      */
     @Test
     public void testToString() {
-        ParkingResponse response = new ParkingResponse(400,"Bad Request");
+        String str = "{'statuscode':400,'message':'Bad Request'}";
+        ParkingResponse response = new ParkingResponse(str);
         String s = response.toString();
         assertEquals(s,"{'statuscode':400,'message':'Bad Request'}");
     }
 
-    /**
-     * Test of toJSON method, of class ParkingResponse.
-     */
-    @Test
-    public void testToJSON() {
-       ParkingResponse response = new ParkingResponse(200,"OK");
-       JsonObject json = response.toJSON();
-       assertEquals(json.get("statuscode").getAsInt(),200);
-       assertEquals(json.get("message").getAsString(),"OK");
-    }
     
 }

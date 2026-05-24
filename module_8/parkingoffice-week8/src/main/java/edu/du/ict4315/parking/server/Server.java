@@ -11,6 +11,7 @@ package edu.du.ict4315.parking.server;
 import edu.du.ict4315.parking.service.ParkingService;
 import edu.du.ict4315.parking.Address;
 import edu.du.ict4315.parking.RealParkingOffice;
+import edu.du.ict4315.parking.serialization.ParkingResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
@@ -55,17 +56,20 @@ public class Server {
 
     private void handleClient(Socket client) {
         try ( PrintWriter pw = new PrintWriter(client.getOutputStream())) {
-            String output;
+            ParkingResponse output;
+            String response;
             try {
                 output = service.handleInput(client.getInputStream());
+                response = Integer.toString(output.getStatus());
+                response += ": ";
+                response += output.getMessage();
             }
             catch (RuntimeException ex) {
                 ex.printStackTrace();
-                output = ex.getMessage();
+                response = ex.getMessage();
             }
 
-            pw.println(output);
-            pw.println("end");
+            pw.println(response);
             pw.flush();
 
         }

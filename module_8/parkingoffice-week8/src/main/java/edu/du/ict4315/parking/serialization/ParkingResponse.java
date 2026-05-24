@@ -15,9 +15,18 @@ public class ParkingResponse {
     private final int statusCode;
     private final String message;
     
-    public ParkingResponse(int statusCode, String message){
-        this.statusCode = statusCode;
-        this.message= message;
+    public ParkingResponse(String json){
+        JsonObject obj = JsonParser.parseString(json).getAsJsonObject();
+        this.statusCode = obj.get("statuscode").getAsInt();
+        this.message = obj.get("message").getAsString();
+    }
+    
+    public int getStatus(){
+        return statusCode;
+    }
+    
+    public String getMessage(){
+        return message;
     }
     
     @Override
@@ -29,12 +38,4 @@ public class ParkingResponse {
         s += "'}";
         return s;
     }
-    
-    public JsonObject toJSON(){
-        JsonObject response = new JsonObject();
-        response.addProperty("statuscode",statusCode);
-        response.addProperty("message",message);
-        return response;
-    }
-    
 }

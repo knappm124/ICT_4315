@@ -69,7 +69,7 @@ public class RegisterCustomerCommandTest {
         RegisterCustomerCommand instance = new RegisterCustomerCommand(office);
         String expResult1 = "CUST2"; //Running test file by itself
         String expResult2 = "CUST7"; //Running all test files
-        String result = instance.execute(params);
+        String result = instance.execute(params).getMessage();
         System.out.println("HERE: " + result);
         assertTrue(expResult1.equals(result)||expResult2.equals(result));
     }

@@ -5,6 +5,7 @@
 package edu.du.ict4315.parking.serialization;
 
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import java.util.Properties;
 
 /**
@@ -15,42 +16,42 @@ public class ParkingRequest {
     private final String command;
     private final Properties props;
     
-    public ParkingRequest(String command, Properties props){
-        this.command = command;
-        this.props = props;
+    public ParkingRequest(String json){
+        JsonObject obj = JsonParser.parseString(json).getAsJsonObject();
+        this.command = obj.get("command").toString();
+        Properties prop = new Properties();
+        String str = obj.get("props").toString();
+        JsonObject obj2 = JsonParser.parseString(str).getAsJsonObject();
+        for(String key : obj2.keySet()){
+            prop.put(key, obj2.get(key).toString());
+        }
+        System.out.println(prop);
+        this.props = prop;
+    }
+    
+    public String getCommand(){
+        return command;
+    }
+    
+    public Properties getProps(){
+        return props;
     }
     
     @Override
     public String toString(){
-        String s = "{'command':'";
+        String s = "{'command':";
         s += command;
-        s += "','props':'{";
+        s += ",'props':{";
         for(String temp : props.stringPropertyNames()){
             s += "'";
             s += temp;
-            s += "':'";
+            s += "':";
             s += props.getProperty(temp);
-            s += "',";
+            s += ",";
+            System.out.println(s);
         }
         s = s.substring(0,s.length()-1);
         s += "}'}";
         return s;
-    }
-    
-    public JsonObject toJSON(){
-        JsonObject request = new JsonObject();
-        request.addProperty("command",command);
-        String s = "'props':";
-        for(String temp : props.stringPropertyNames()){
-            s += "'";
-            s += temp;
-            s += "':'";
-            s += props.getProperty(temp);
-            s += "',";
-        }
-        s = s.substring(0,s.length()-1);
-        s += "}";
-        request.addProperty("props",s);
-        return request;
     }
 }

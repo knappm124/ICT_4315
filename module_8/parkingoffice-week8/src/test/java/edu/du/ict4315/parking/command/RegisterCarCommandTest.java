@@ -65,14 +65,14 @@ public class RegisterCarCommandTest {
         params.setProperty("state", "CO");
         params.setProperty("zip", "35276");
         
-        String id = instance.execute(params);
+        String id = instance.execute(params).getMessage();
         params2.setProperty("customer",id);
         params2.setProperty("cartype","SUV");
         params2.setProperty("license","D3GS 43FD");
         
         String expResult1 = "P1001"; //Running test file by itself
         String expResult2 = "P1010"; //Running all test files
-        String result = instance2.execute(params2);
+        String result = instance2.execute(params2).getMessage();
         System.out.println("HERE: " + result);
         assertTrue(expResult1.equals(result)||expResult2.equals(result));
     }

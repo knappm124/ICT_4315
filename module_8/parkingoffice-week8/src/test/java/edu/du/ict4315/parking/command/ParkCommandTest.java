@@ -99,7 +99,7 @@ public class ParkCommandTest {
 
             String expResult = Money.times(lot.getBaseRate(), 0.8).toString(); // 80% of base rate
             String result = "";
-            result = instance.execute(params);
+            result = instance.execute(params).getMessage();
             System.out.println(expResult);
 
             assertEquals(expResult, result);
@@ -108,7 +108,7 @@ public class ParkCommandTest {
             expResult = lot.getBaseRate().toString();
 
             System.out.println(expResult);
-            result = instance.execute(params);
+            result = instance.execute(params).getMessage();
 
             assertEquals(expResult, result);
             lot.setParkingChargeCalculatorFactory(factory);
