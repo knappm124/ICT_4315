@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: edu.du.ict4315.parking.charges.test.SpecialDayDiscountTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.017 s <<< FAILURE! - in edu.du.ict4315.parking.charges.test.SpecialDayDiscountTest
+testAddSpecialDay  Time elapsed: 0.009 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <3.6> but was: <86.4>
+	at edu.du.ict4315.parking.charges.test.SpecialDayDiscountTest.testAddSpecialDay(SpecialDayDiscountTest.java:96)
+
+testGetParkingCharge  Time elapsed: 0.008 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <4.0> but was: <96.0>
+	at edu.du.ict4315.parking.charges.test.SpecialDayDiscountTest.testGetParkingCharge(SpecialDayDiscountTest.java:59)
+

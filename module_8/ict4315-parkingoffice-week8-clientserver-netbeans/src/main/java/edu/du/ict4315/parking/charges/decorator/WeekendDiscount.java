@@ -1,0 +1,65 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package edu.du.ict4315.parking.charges.decorator;
+
+import edu.du.ict4315.currency.Money;
+import edu.du.ict4315.parking.ParkingLot;
+import edu.du.ict4315.parking.ParkingPermit;
+import java.time.LocalDateTime;
+
+/**
+ *
+ * @author melyg
+ */
+public class WeekendDiscount extends ParkingChargeCalculator {
+    private ParkingChargeCalculator calc;
+    
+    public WeekendDiscount(ParkingChargeCalculator calc) {
+        this.calc = calc;
+    }
+
+    @Override
+    public Money getParkingCharge(LocalDateTime timeIn, LocalDateTime timeOut, ParkingPermit permit, ParkingLot lot) {
+        Money amount = calc.getParkingCharge(timeIn, timeOut, permit, lot);
+        int day1 = timeIn.getDayOfYear();
+        int day2 = timeOut.getDayOfYear();
+        String date = timeIn.getDayOfWeek().toString();
+        if (day1 == day2) {
+            switch (date) {
+                case "SATURDAY":
+                    amount = Money.times(amount, 0.8);
+                    break;
+                case "SUNDAY":
+                    amount = Money.times(amount, 0.8);
+                    break;
+                
+            }
+        } else {
+            LocalDateTime counter = timeIn;
+            int between = day2 - day1;
+            int weekendDays = 0;
+            for (int i = 0; i <= between; i++) {
+                switch (date) {
+                    case "SATURDAY" ->
+                        weekendDays += 1;
+                    case "SUNDAY" ->
+                        weekendDays += 1;
+                }
+                counter = counter.plusDays(1);
+                date = counter.getDayOfWeek().toString();
+            }
+            if (weekendDays > between) {
+                weekendDays = between;
+            }
+            double percentWeekend = (double) weekendDays / (double) between;
+            if (percentWeekend != 0) {
+                double weekendDiscount = percentWeekend * 0.2;
+                Money discount = Money.times(amount, weekendDiscount);  
+                amount = Money.subtract(amount,discount);
+            }
+        }
+        return amount;
+    }
+}

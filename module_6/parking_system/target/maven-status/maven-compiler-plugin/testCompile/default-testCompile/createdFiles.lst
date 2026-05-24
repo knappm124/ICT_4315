@@ -10,7 +10,6 @@ edu/du/ict4315/parking/test/TestParkingOffice.class
 edu/du/ict4315/parking/service/test/TestParkingService.class
 edu/du/ict4315/parking/charges/decorator/test/SpecialDayDiscountTest.class
 edu/du/ict4315/parking/charges/strategy/test/BaseStrategyChargeTest.class
-edu/du/ict4315/parking/test/ParkingObserverTest.class
 edu/du/ict4315/parking/service/test/RegisterCustomerCommandTest.class
 edu/du/ict4315/parking/service/test/RegisterCarCommandTest.class
 edu/du/ict4315/parking/charges/decorator/test/WeekendDiscountTest.class

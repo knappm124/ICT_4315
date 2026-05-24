@@ -7,7 +7,7 @@ package edu.du.ict4315.parking.service.test;
 import edu.du.ict4315.parking.service.RegisterCarCommand;
 import java.io.IOException;
 import java.util.Properties;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.aapi.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
