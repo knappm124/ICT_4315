@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: edu.du.ict4315.parking.command.RegisterCarCommandTest
--------------------------------------------------------------------------------
-Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.001 s <<< FAILURE! - in edu.du.ict4315.parking.command.RegisterCarCommandTest
-testExecute  Time elapsed: 0.001 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
-	at edu.du.ict4315.parking.command.RegisterCarCommandTest.testExecute(RegisterCarCommandTest.java:76)
-
