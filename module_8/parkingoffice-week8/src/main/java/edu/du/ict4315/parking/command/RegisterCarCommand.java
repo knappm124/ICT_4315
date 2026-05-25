@@ -79,11 +79,13 @@ public class RegisterCarCommand implements Command {
 
         logger.info("Registering car " + car);
         message = office.register(car);
+        System.out.println("MESSAGE CHECK: " + message);
         statusCode = 200;
         }
         String json = "{'statuscode':" + statusCode;
-        json += ",'message':";
-        json += "}";
+        json += ",'message':'";
+        json += message;
+        json += "'}";
         return new ParkingResponse(json);
     }
     

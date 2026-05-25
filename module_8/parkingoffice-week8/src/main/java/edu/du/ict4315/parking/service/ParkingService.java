@@ -1,4 +1,4 @@
-///////////////////////////////
+ ///////////////////////////////
 // File: ParkingService.java
 // Author: Instructor
 // This file is the seed for how the ParkingOffice server handles remote commands.
@@ -53,6 +53,7 @@ public class ParkingService {
 
     private void register(Command command) {
         commands.put(command.getCommandName(), command);
+        System.out.println(commands);
     }
 
     // Notice how this version of performCommand puts all the logic in the
@@ -78,7 +79,7 @@ public class ParkingService {
         Scanner scanner = new Scanner(in);
         String token = scanner.nextLine();
         ParkingRequest req = new ParkingRequest(token);
-        String command = req.getCommand();
+        String command = req.getCommand().toUpperCase();
         Properties props = req.getProps();
         String result = performCommand(command,props);
         return new ParkingResponse(result);

@@ -56,15 +56,15 @@ public class TestParkingService {
         if (i < 0 || i > inputLN.length) {
             return null;
         }
-        return "CUSTOMER\nlastname=" + inputLN[i] + "\nfirstname=" + inputFN[i] + "\n"
-                + (inputPN == null ? "" : ("phonenumber=" + inputPN[i] + "\n")) + "end\n";
+        return "{'command':'CUSTOMER','props':{'lastname':'" + inputLN[i] + "','firstname':'" + inputFN[i] + "'"
+                + (inputPN == null ? "" : (",'phonenumber':'" + inputPN[i] + "'")) + "}}";
     }
 
     private String getInputCar(int i) {
         if (i < 0 || i > inputLN.length) {
             return null;
         }
-        return "CAR\nlicense=" + inputLP[i] + "\ncustomer=" + inputCN[i] + "\nend\n";
+        return "{'command':'CAR','props':'{'license':'" + inputLP[i] + "','customer':'" + inputCN[i] + "'}'";
     }
 
     private static final String[] badInput = {

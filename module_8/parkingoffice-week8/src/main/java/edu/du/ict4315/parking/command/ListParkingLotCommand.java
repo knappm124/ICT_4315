@@ -37,9 +37,10 @@ public class ListParkingLotCommand implements Command {
     public ParkingResponse execute(Properties params) {
         // Currently parameters are ignored
         String lots = String.join(",", parkingOffice.getLotIds());
-        String json = "{'statuscode':200,'message':";
+        System.out.println(lots);
+        String json = "{'statuscode':200,'message':'";
         json += lots;
-        json += "}";
+        json += "'}";
         return new ParkingResponse(json);
     }
 

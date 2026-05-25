@@ -95,9 +95,9 @@ public class ParkCommand implements Command {
         }
         String json = "{'statuscode':";
         json += statusCode;
-        json += ",'message':";
+        json += ",'message':'";
         json += message;
-        json += "}";
+        json += "'}";
         return new ParkingResponse(json);
     }
 
