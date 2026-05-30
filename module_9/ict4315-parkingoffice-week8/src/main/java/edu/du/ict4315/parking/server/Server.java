@@ -1,6 +1,6 @@
-//////////////////////////
+ //////////////////////////
 // File: Server.java
-// Author: R Judd, modified by M I Schwartz
+// Author: R Judd, modified by M I Schwartz, modified by M Knapp
 // This file implements a String message-oriented server to allow clients to send
 // commands to the Parking Office server.
 // Note: Assignment 8 examines alternate ways of exchanging messages.
@@ -12,10 +12,12 @@ import edu.du.ict4315.parking.service.ParkingService;
 import edu.du.ict4315.parking.Address;
 import edu.du.ict4315.parking.RealParkingOffice;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
-import java.net.Socket;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,7 +31,7 @@ public class Server {
 
     private static final Logger logger = Logger.getLogger(Server.class.getName());
     // Set logging level
-
+    private boolean shutdownServer;
     static {
         logger.setLevel(Level.FINE);
     }
@@ -40,48 +42,28 @@ public class Server {
 
     public Server(ParkingService service) {
         this.service = service;
+        shutdownServer = false;
     }
 
     public void startServer() throws IOException {
+        ExecutorService executor = Executors.newFixedThreadPool(5);
         logger.info("Starting server: " + InetAddress.getLocalHost().getHostAddress());
-        try ( ServerSocket serverSocket = new ServerSocket(PORT)) {
+        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
             serverSocket.setReuseAddress(true);
-            while (true) {
-                Socket client = serverSocket.accept();
-                handleClient(client);
+            while (!shutdownServer) {
+                executor.submit(() -> {
+                    try {
+                        Client handler = new Client(service, serverSocket.accept());
+                        handler.run();
+                    } catch (IOException ex) {
+                        System.getLogger(Server.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                        shutdownServer = true;
+                    }
+                });
             }
+            executor.close();
         }
     }
-
-    private void handleClient(Socket client) {
-        try ( PrintWriter pw = new PrintWriter(client.getOutputStream())) {
-            String output;
-            try {
-                output = service.handleInput(client.getInputStream());
-            }
-            catch (RuntimeException ex) {
-                ex.printStackTrace();
-                output = ex.getMessage();
-            }
-
-            pw.println(output);
-            pw.println("end");
-            pw.flush();
-
-        }
-        catch (IOException e) {
-            logger.log(Level.WARNING, "Failed to read from client.", e);
-        }
-        finally {
-            try {
-                client.close();
-            }
-            catch (IOException e) {
-                logger.log(Level.WARNING, "Failed to close client socket.", e);
-            }
-        }
-    }
-
     /**
      * Run this as: $ java ict4315.server.Server
      */
