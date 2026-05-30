@@ -1,0 +1,20 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Parking Office Home</title>
+  </head>
+  <body>
+    <h1>Parking office status</h1>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/po/customerdetails">List of customers</a></li>
+      <li>List of permits</li>
+      <li><a href="/po/listlots">List of lots</a></li>
+      <li><a href="/po/lotdetails">Lot details</a></li>
+    </ul>
+    <hr/>
+    <h2 th:text="'Server Status: ' + ${status}">
+	Server status: Not available
+    </h2>
+  </body>
+</html>
