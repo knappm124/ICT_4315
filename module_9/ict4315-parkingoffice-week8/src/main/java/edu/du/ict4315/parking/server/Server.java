@@ -14,8 +14,6 @@ import edu.du.ict4315.parking.RealParkingOffice;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
