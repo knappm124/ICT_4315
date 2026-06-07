@@ -1,0 +1,38 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Parking Office Customers</title>
+  </head>
+  <body>
+    <h1>Parking office customers</h1>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/po/customerdetails">List of customers</a></li>
+      <li>List of permits</li>
+      <li><a href="/po/listlots">List of lots</a></li>
+      <li><a href="/po/lotdetails">Lot details</a></li>
+    </ul>
+    <hr/>
+    <h2>Customer Ids</h2>
+
+    <table>
+        <tr><th>Customer id</th><th>First name</th>
+            <th>Last name</th><th>Phone number</tr>
+    <tr th:each='customer : ${customers}'>
+        <td th:text='${customer.id}'>.</td>
+        <td th:text='${customer.firstName}'>.</td>
+        <td th:text='${customer.lastName}'>.</td>
+        <td th:text='${customer.phoneNumber}'>.</td>
+    </tr>
+    </table>
+    <hr/>
+    <!-- SparkFormField array: formFields -->
+    <form method="POST" action="/user/newcustomer">
+        <span th:each="ff : ${formFields}">
+            <label th:text="${ff.displayName}"></label>
+            <input th:id="${ff.fieldName}" th:name="${ff.fieldName}"/><br/>    
+        </span>
+        <input type="Submit" value="New Customer"/>
+    </form>
+  </body>
+</html>

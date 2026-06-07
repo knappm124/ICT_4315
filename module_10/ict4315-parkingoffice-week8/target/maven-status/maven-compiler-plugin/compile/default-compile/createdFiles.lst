@@ -29,6 +29,7 @@ edu\du\ict4315\parking\support\User.class
 edu\du\ict4315\parking\clients\ServerParkingGui.class
 edu\du\ict4315\parking\charges\factory\FactoryParkingChargeCalculator.class
 edu\du\ict4315\parking\observer\ParkingAction.class
+edu\du\ict4315\parking\charges\strategy\ParkingChargeStrategyModule.class
 edu\du\ict4315\parking\service\spark\SparkController.class
 edu\du\ict4315\parking\clients\CommandException.class
 edu\du\ict4315\parking\support\IdMaker.class
@@ -61,7 +62,9 @@ edu\du\ict4315\parking\support\UserRole.class
 edu\du\ict4315\parking\ParkingPermit.class
 edu\du\ict4315\parking\service\spark\SparkController$6.class
 edu\du\ict4315\parking\service\spark\SparkController$9.class
+edu\du\ict4315\parking\ParkingLotModule.class
 edu\du\ict4315\parking\RealParkingOffice.class
+edu\du\ict4315\parking\charges\factory\FactoryParkingChargeModule.class
 edu\du\ict4315\parking\clients\ParkingOfficeClient.class
 edu\du\ict4315\parking\service\spark\SparkController$3.class
 edu\du\ict4315\parking\service\spark\SparkFormField.class

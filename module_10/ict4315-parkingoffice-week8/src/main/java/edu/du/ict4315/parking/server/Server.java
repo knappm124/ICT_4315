@@ -59,7 +59,7 @@ public class Server {
                     }
                 });
             }
-            executor.close();
+            executor.shutdown();
         }
     }
     /**
