@@ -52,6 +52,11 @@
             <version>1.9</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>7.0.0</version>
+        </dependency>
     </dependencies>
     <reporting>
         <plugins>

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: edu.du.ict4315.parking.charges.test.PrimeTimeSurchargeNoWeekendChargeTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in edu.du.ict4315.parking.charges.test.PrimeTimeSurchargeNoWeekendChargeTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.496 s - in edu.du.ict4315.parking.charges.test.PrimeTimeSurchargeNoWeekendChargeTest
